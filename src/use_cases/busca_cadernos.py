@@ -1,3 +1,4 @@
+from time import sleep
 from src.utils import navegacao
 from src.utils.datas import DatasSemanaAnterior
 import constantes
@@ -28,8 +29,20 @@ class BuscaCadernos:
         botao_pesquisar = navegacao.encontrar_elemento(self.driver, 'id', constantes.LOCALIZADOR_BOTAO_PESQUISAR)
         navegacao.clicar_elemento(botao_pesquisar)
 
+
+    def __baixar_cadernos(self) -> None:
+        botoes_download = navegacao.encontrar_elementos(self.driver, 'xpath', constantes.XPATH_BOTOES_DOWNLOAD)
+        if len(botoes_download) == 0:
+            print("Nenhum caderno encontrado para download.")
+            raise AttributeError("Nenhum caderno encontrado para download.")
+        for botao in botoes_download:
+            navegacao.clicar_elemento(botao)
+            sleep(1)
+
+
     def executar(self) -> None:
         self.__acessar_pagina_cadernos()
         [self.__preencher_campo_data(sufixo, data) for sufixo, data in self.datas_semana_anterior.items()]
         self.__selecionar_tst()
         self.__clicar_botao_pesquisar()
+        self.__baixar_cadernos()

@@ -11,8 +11,17 @@ def abrir_url(driver, url: str) -> None:
 def encontrar_elemento(driver, tag_elemento: str, nome_elemento: str) -> None:
     try:
         atributo = getattr(By, tag_elemento.upper())
-        element = driver.find_element(atributo, nome_elemento)
-        return element
+        elemento = driver.find_element(atributo, nome_elemento)
+        return elemento
+    except:
+        print("Elemento não encontrado.")
+
+
+def encontrar_elementos(driver, tag_elemento: str, nome_elementos: str) -> None:
+    try:
+        atributo = getattr(By, tag_elemento.upper())
+        elementos = driver.find_elements(atributo, nome_elementos)
+        return elementos
     except:
         print("Elemento não encontrado.")
 
