@@ -1,6 +1,6 @@
 from time import sleep
-from src.utils import navegacao
-from src.utils.datas import DatasSemanaAnterior
+from src.utils import navegacao, sistema_arquivos
+from src.entidades.datas import DatasSemanaAnterior
 import constantes
 
 
@@ -24,11 +24,12 @@ class BuscaCadernos:
         selecionador_tribunal = navegacao.encontrar_selecionador(self.driver, constantes.LOCALIZADOR_SELECAO_TRIBUNAL)
         navegacao.selecionar_opcao_por_texto(selecionador_tribunal, constantes.TRIBUNAL)
 
-
     def __clicar_botao_pesquisar(self) -> None:
         botao_pesquisar = navegacao.encontrar_elemento(self.driver, 'id', constantes.LOCALIZADOR_BOTAO_PESQUISAR)
         navegacao.clicar_elemento(botao_pesquisar)
 
+    def __esvaziar_pasta_downloads(self) -> None:
+        sistema_arquivos.remover_arquivos_diretorio(constantes.CAMINHO_PASTA_DOWNLOADS)
 
     def __baixar_cadernos(self) -> None:
         botoes_download = navegacao.encontrar_elementos(self.driver, 'xpath', constantes.XPATH_BOTOES_DOWNLOAD)
@@ -39,10 +40,10 @@ class BuscaCadernos:
             navegacao.clicar_elemento(botao)
             sleep(1)
 
-
     def executar(self) -> None:
         self.__acessar_pagina_cadernos()
         [self.__preencher_campo_data(sufixo, data) for sufixo, data in self.datas_semana_anterior.items()]
         self.__selecionar_tst()
         self.__clicar_botao_pesquisar()
+        self.__esvaziar_pasta_downloads()
         self.__baixar_cadernos()

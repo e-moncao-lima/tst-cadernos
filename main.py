@@ -1,5 +1,6 @@
 from src.utils.config import driver
 from src.use_cases.busca_cadernos import BuscaCadernos
+from src.use_cases.leitura_cadernos import LeituraCadernos
 from constantes import CAMINHO_PASTA_DOWNLOADS
 
 
@@ -12,7 +13,8 @@ class Main:
         busca_cadernos.executar()
 
     def __ler_cadernos(self) -> None:
-        pass
+        leitura_cadernos = LeituraCadernos()
+        leitura_cadernos.executar()
 
     def __salvar_processos(self) -> None:
         pass
@@ -21,7 +23,9 @@ class Main:
         pass
 
     def executar(self) -> None:
-        self.__buscar_cadernos()
+        # self.__buscar_cadernos()
+        self.__ler_cadernos()
+        print("Operação finalizada.")
 
 
 

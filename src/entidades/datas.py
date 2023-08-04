@@ -12,10 +12,3 @@ class DatasSemanaAnterior:
     def obter_datas(self) -> dict[str, str]:
         return {'Ini': self.data_inicio.strftime(FORMATO_DATA_STRING),
                 'Fim': self.data_fim.strftime(FORMATO_DATA_STRING)}
-    
-    # @property
-    # def __dict__(self) -> dict:
-    #     print({'Ini': self.data_inicio.strftime(FORMATO_DATA_STRING),
-    #             'Fim': self.data_fim.strftime(FORMATO_DATA_STRING)})
-    #     return {'Ini': self.data_inicio.strftime(FORMATO_DATA_STRING),
-    #             'Fim': self.data_fim.strftime(FORMATO_DATA_STRING)}

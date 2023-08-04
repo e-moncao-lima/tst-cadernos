@@ -11,3 +11,5 @@ LOCALIZADOR_BOTAO_PESQUISAR = 'corpo:formulario:botaoAcaoPesquisar'
 FORMATO_DATA_STRING = '%d%m%Y'
 
 XPATH_BOTOES_DOWNLOAD = '//*[@class="bt af_commandButton"]'
+PADRAO_ENCONTRAR_NUMERO_PROCESSO_DATA = r'n.\s*\d{4}\/\d{4}\s+data\s+da\s+disponibilização:\s+\w+-\w+,\s+\d{1,2}\s+\w+\s+\w+\s+\w+\s+\d{4}'
+PADRAO_SPLIT_DATA_DISPONIBILIZACAO = r'data\s+da\s+disponibilização:\s+\w+-*\w+,\s+'
