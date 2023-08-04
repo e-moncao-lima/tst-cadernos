@@ -17,5 +17,5 @@ def encontrar_padrao_regex_arquivo(conteudo_arquivo: str, padrao_regex: str) -> 
     return re.findall(padrao_regex, conteudo_arquivo, flags=re.IGNORECASE | re.MULTILINE)
 
 
-def separar_texto_regex(texto: str, padrao_regex: str) -> str | None:
+def separar_texto_regex(texto: str, padrao_regex: str) -> list[str] | None:
     return re.split(padrao_regex, texto)

@@ -12,21 +12,17 @@ class Main:
         busca_cadernos = BuscaCadernos(self.driver)
         busca_cadernos.executar()
 
-    def __ler_cadernos(self) -> None:
+    def __extrair_dados_cadernos(self) -> None:
         leitura_cadernos = LeituraCadernos()
         leitura_cadernos.executar()
 
-    def __salvar_processos(self) -> None:
-        pass
-
-    def __gerar_relatorio_duplicatas(self) -> None:
+    def __gerar_resultados(self) -> None:
         pass
 
     def executar(self) -> None:
-        # self.__buscar_cadernos()
-        self.__ler_cadernos()
+        self.__buscar_cadernos()
+        self.__extrair_dados_cadernos()
         print("Operação finalizada.")
-
 
 
 if __name__ == '__main__':
