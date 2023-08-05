@@ -4,11 +4,12 @@ import constantes
 
 
 class GeraResultados:
-    def __init__(self) -> None:
+    def __init__(self, logger) -> None:
+        self.logger = logger
         self.processos_duplicados: dict = {}
 
     def __obter_arquivo_resultado(self) -> None:
-        self.dados_resultado = sistema_arquivos.obter_dados_arquivo_json(constantes.CAMINHO_JSON_RESULTADOS)
+        self.dados_resultado = sistema_arquivos.obter_dados_arquivo_json(self.logger, constantes.CAMINHO_JSON_RESULTADOS)
 
     def __gerar_planilha_dia(self, dia: str, processos: list[str]) -> None:
         caminho_arquivo = join(constantes.CAMINHO_PASTA_RESULTADOS, f'{constantes.TRIBUNAL} {dia}.xlsx')
@@ -33,12 +34,14 @@ class GeraResultados:
 
     def __gerar_relatorio_duplicatas(self) -> None:
         df_duplicatas = tratamento_dados.criar_dataframe_de_dicionario(self.processos_duplicados, ['Datas'])
-        tratamento_dados.salvar_dataframe_excel(df_duplicatas, constantes.CAMINHO_RELATORIO_DUPLICATAS)
+        tratamento_dados.salvar_dataframe_excel(df_duplicatas, constantes.CAMINHO_RELATORIO_DUPLICATAS, True)
 
     def executar(self) -> None:
+        self.logger.info("Iniciando fase de geração dos resultados.")
         self.__obter_arquivo_resultado()
         for dia, processos in self.dados_resultado.items():
             self.__gerar_planilha_dia(dia, processos)
         self.__verificar_duplicatas()
         if self.processos_duplicados != {}:
             self.__gerar_relatorio_duplicatas()
+        self.logger.info("Resultados gerados com sucesso.")
