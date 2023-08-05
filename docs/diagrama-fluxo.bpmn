@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_00le66l" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="12.0.0">
+  <bpmn:process id="Process_1t3thw4" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_0bkyyvk">
+      <bpmn:outgoing>Flow_1nf8ggi</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_0q4ccwg" name="Pesquisar cadernos de acordo com filtro">
+      <bpmn:incoming>Flow_1nf8ggi</bpmn:incoming>
+      <bpmn:outgoing>Flow_05wbx1z</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1nf8ggi" sourceRef="StartEvent_0bkyyvk" targetRef="Activity_0q4ccwg" />
+    <bpmn:task id="Activity_1uzltui" name="Realizar a leitura dos cadernos e armazenamento dos dados">
+      <bpmn:incoming>Flow_05wbx1z</bpmn:incoming>
+      <bpmn:outgoing>Flow_032f7zc</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_05wbx1z" sourceRef="Activity_0q4ccwg" targetRef="Activity_1uzltui" />
+    <bpmn:task id="Activity_0jnvi4i" name="Gerar planilhas Excel segregadas por dia da semana">
+      <bpmn:incoming>Flow_032f7zc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l0zoce</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_032f7zc" sourceRef="Activity_1uzltui" targetRef="Activity_0jnvi4i" />
+    <bpmn:exclusiveGateway id="Gateway_1j5ue2i" name="Há duplicata de processo entre as datas?">
+      <bpmn:incoming>Flow_1l0zoce</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lhi3kp</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0ej9gda</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1l0zoce" sourceRef="Activity_0jnvi4i" targetRef="Gateway_1j5ue2i" />
+    <bpmn:task id="Activity_1obiufc" name="Gerar relatório de duplicatas">
+      <bpmn:incoming>Flow_0lhi3kp</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0lhi3kp" name="Sim" sourceRef="Gateway_1j5ue2i" targetRef="Activity_1obiufc" />
+    <bpmn:endEvent id="Event_0rwocsw">
+      <bpmn:incoming>Flow_0ej9gda</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0ej9gda" name="Não" sourceRef="Gateway_1j5ue2i" targetRef="Event_0rwocsw" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1t3thw4">
+      <bpmndi:BPMNShape id="Gateway_1j5ue2i_di" bpmnElement="Gateway_1j5ue2i" isMarkerVisible="true">
+        <dc:Bounds x="675" y="125" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="656" y="80" width="88" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0rwocsw_di" bpmnElement="Event_0rwocsw">
+        <dc:Bounds x="792" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jnvi4i_di" bpmnElement="Activity_0jnvi4i">
+        <dc:Bounds x="530" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1obiufc_di" bpmnElement="Activity_1obiufc">
+        <dc:Bounds x="770" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1uzltui_di" bpmnElement="Activity_1uzltui">
+        <dc:Bounds x="380" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0q4ccwg_di" bpmnElement="Activity_0q4ccwg">
+        <dc:Bounds x="230" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_0bkyyvk">
+        <dc:Bounds x="152" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1nf8ggi_di" bpmnElement="Flow_1nf8ggi">
+        <di:waypoint x="188" y="150" />
+        <di:waypoint x="230" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05wbx1z_di" bpmnElement="Flow_05wbx1z">
+        <di:waypoint x="330" y="150" />
+        <di:waypoint x="380" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_032f7zc_di" bpmnElement="Flow_032f7zc">
+        <di:waypoint x="480" y="150" />
+        <di:waypoint x="530" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l0zoce_di" bpmnElement="Flow_1l0zoce">
+        <di:waypoint x="630" y="150" />
+        <di:waypoint x="675" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lhi3kp_di" bpmnElement="Flow_0lhi3kp">
+        <di:waypoint x="725" y="150" />
+        <di:waypoint x="770" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="730" y="132" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ej9gda_di" bpmnElement="Flow_0ej9gda">
+        <di:waypoint x="700" y="175" />
+        <di:waypoint x="700" y="240" />
+        <di:waypoint x="792" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="705" y="193" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

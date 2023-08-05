@@ -1,8 +1,9 @@
 # TST - Cadernos
 
-Módulo do projeto MAPA responsável por montar as fichas das propostas dos seguros agrículas e produzir seus metadados.
+Projeto de Extração de números de processos de cadernos do TST.
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Selenium](https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white)
 
 
 ## Tabela de Conteúdo
@@ -12,12 +13,14 @@ Módulo do projeto MAPA responsável por montar as fichas das propostas dos segu
   - [Execução](#execução)
   - [_Features_](#features)
   - [Funcionamento do Módulo](#funcionamento-do-módulo)
-    - [Consumo de Dados Externos](#consumo-de-dados-externos)
-    - [Geração de Figuras](#geração-de-figuras)
-    - [Montagem das Fichas](#montagem-das-fichas)
-    - [Exportação de Fichas e Metadados](#exportação-de-fichas-e-metadados)
+    - [1. Diretório raiz](#1-diretório-raiz)
+    - [2. Diretório app](#2-diretório-app)
+    - [3. Diretório resultados](#3-diretório-resultados)
+    - [4. Diretório src](#4-diretório-src)
+      - [4.1 Subdiretório entidades](#41-subdiretório-entidades)
+      - [4.2 Subdiretório use\_cases](#42-subdiretório-use_cases)
+      - [4.3 Subdiretório utils](#43-subdiretório-utils)
   - [Outputs](#outputs)
-  - [Tratativas de Erros Conhecidos](#tratativas-de-erros-conhecidos)
   - [Roadmap](#roadmap)
 
 
@@ -40,67 +43,84 @@ pipenv install --deploy
 
 ## Execução
 
-Para a execução, é necessário criar um arquivo na raiz da pasta chamado ".env" similar ao .env.sample preenchido com as credenciais de acesso ao banco e ao SSH do servidor-alvo. Logo após, basta executar de acordo com o formato que melhor couber a partir dos seguintes:
+Para a execução, há duas formas de se seguir:
+
+  1. Via código-fonte:
+
+Dentro da raiz do projeto, abrir um terminal e digitar:
 
 ```shell
 python main.py
 ```
 
+  2. Via arquivo executável
+
+Na raiz do projeto, há um arquivo executável [LeitorCadernosTST.exe](LeitorCadernosTST.exe) para Windows. Basta executá-lo.
+
+
 ## _Features_
 
- - [ ] Navegação no site do tribunal
- - [ ] _Download_ dos cadernos
- - [ ] Leitura dos cadernos
- - [ ] Gerenciamento de sistema de arquivos
- - [ ] Salvamento dos números de processos em planilhas separadas por data
- - [ ] Relatório de duplicatas
+ - Navegação no site do tribunal e _download_ dos cadernos
+ - Leitura dos cadernos para extração do número do processo
+ - Salvamento dos números de processos em planilhas separadas por data
+ - Geração de relatório de duplicatas, caso existente.
+ - Arquivo executável Windows.
 
 
 
 ## Funcionamento do Módulo
 
-![Diagrama de Fluxo de Dados](docs/images/diagram-full.png)
+![Diagrama de Fluxo de Processo](docs/diagrama-fluxo.png)
 
-### Consumo de Dados Externos
+Foi aplicada a ideia do código limpo orientada a uma arquitetura inspirada na [Arquitetura Limpa](https://www.amazon.com.br/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164) proposta por Robert Martin, que visa isolar modelos, regras de negócio e dependências externas à aplicação.
 
-![Diagrama de Fluxo do Consumo de Dados Externos](docs/images/diagram-externals.png)
+Desta forma, a aplicação é dividida na seguinte árvore de diretórios:
 
-### Geração de Figuras
+### 1. Diretório raiz
 
-![Diagrama de Fluxo da Geração de Figuras](docs/images/diagram-figures.png)
+Na raiz do projeto, localizam-se os arquivo de acesso primário do usuário com a aplicação para que seja possível executá-la bem como arquivos referentes ao projeto em si.
 
-### Montagem das Fichas
+Por exemplo, nela constam os arquivos do gerenciador de dependências para o ambiente, os arquivos principais para CLI e executável e as constantes para configuração.
 
-![Diagrama de Fluxo da Montagem da Ficha](docs/images/diagram-assembly.png)
+### 2. Diretório [app](app/)
 
-### Exportação de Fichas e Metadados
+Aqui, ficam as configurações mais técnicas da aplicação como a configuração dos logs (arquivo de constantes também poderia encaixar aqui).
 
-![Diagrama de Fluxo da Exportação de Fichas e Metadados](docs/images/diagram-export.png)
+### 3. Diretório [resultados](resultados/)
 
+Nesse diretório são alocados os arquivos de saída da execução de forma local além dos arquivos baixados ao longo do procedimento.
+
+### 4. Diretório [src](src/)
+
+Este é o diretório no qual se concentra todo o código fonte da aplicação e segue uma arquitetura simplificada coerente com a natureza do projeto. Para isso, foi subdividido em mais três subdiretórios, sendo:
+
+#### 4.1 Subdiretório [entidades](src/entidades/)
+
+Aqui devem ficar o núcleo da aplicação com suas características e modelagens principais sem dependência nas demais camadas e suas principais validações.
+
+#### 4.2 Subdiretório [use_cases](src/use_cases/)
+
+Este diretório é considerado o mais crítico da aplicação pois é onde se concentram as regras de negócio e lógicas do projeto.
+
+#### 4.3 Subdiretório [utils](src/utils/)
+
+Finalmente, esse subdiretório costuma ser organizado em classes ou funções orientadas às ferraemntas e dependências, funcionando como uma primeira ponte entre as funcionalidades do núcleo da sua aplicação com dependências de terceiros.
+
+Aqui estão arquivos que centralizam dependências, como exemplo, um arquivo com as funções gerais do módulo _Selenium_ utilizadas, de forma que a manutenção referente a essa biblioteca seja feita em um só lugar. 
 
 ## Outputs
 
+Nesse projeto, há dois tipos de saídas esperadas: uma das saídas do projeto são arquivos _Excel_ contendo os números de processos lidos dos cadernos agrupados por data, sem um arquivo por data. 
 
-
-## Tratativas de Erros Conhecidos
-
-:construction: Área em Construção
-
-| Tipo de Erro | Causa | Tratativa Aplicada |
-| --- | --- | --- |
-| --- | --- | --- |
+Já o outro resultado é uma planilha-relatório a ser gerada caso haja alguma duplicata de processo em datas distintas. Nela, são apresentados os números de processo que foram repetidos e as datas em que constam esses processos.
 
 
 ## Roadmap
 
- - [x] Implementar _log_ de texto e de interface com o usuário;
- - [x] Retirar credenciais _hardcoded_ com o banco e SSH;
- - [x] Implementar rastreamento de IDs;
- - [x] Executar módulo no servidor;
- - [ ] :construction: Realizar tratativas de exceções;
- - [ ] :construction: Dockerizar a aplicação;
- - [ ] Implementar CI e CD (?);
+ - [x] Implementar _log_ de interface com o usuário;
+ - [x] Executar módulo no servidor via CLI;
+ - [x] Executar módulo no servidor via executável;
+ - [x] Estruturar arquitetura limpa;
+ - [x] Realizar tratativas de exceções;
+ - [ ] Customizar tipos e exceções;
  - [ ] Implementar testes e controle de qualidade (SonarQube);
- - [ ] Estruturar arquitetura limpa;
- - [ ] Implementar mensageria para integração com demais módulos;
- - [ ] Subir para o MAPA.
