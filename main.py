@@ -1,6 +1,7 @@
 from src.utils.config import driver
 from src.use_cases.busca_cadernos import BuscaCadernos
 from src.use_cases.leitura_cadernos import LeituraCadernos
+from src.use_cases.gera_resultados import GeraResultados
 from constantes import CAMINHO_PASTA_DOWNLOADS
 
 
@@ -17,11 +18,13 @@ class Main:
         leitura_cadernos.executar()
 
     def __gerar_resultados(self) -> None:
-        pass
+        gera_resultados = GeraResultados()
+        gera_resultados.executar()
 
     def executar(self) -> None:
         self.__buscar_cadernos()
         self.__extrair_dados_cadernos()
+        self.__gerar_resultados()
         print("Operação finalizada.")
 
 

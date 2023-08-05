@@ -39,6 +39,7 @@ def escrever_dados_arquivo_json(caminho_arquivo_json: str, dicionario_dados: dic
     except FileNotFoundError:
         print("Arquivo não existe.")
 
+
 def atualizar_arquivo_json(caminho_arquivo_json: str, dicionario_dados: dict[str, str]) -> None:
     json_serializado = json.dumps(dicionario_dados, indent=4)
     with open(caminho_arquivo_json, "+w") as arquivo:

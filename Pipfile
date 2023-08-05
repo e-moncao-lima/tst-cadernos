@@ -7,9 +7,11 @@ name = "pypi"
 selenium = "*"
 webdriver-manager = "*"
 pymupdf = "*"
+pandas = "*"
+xlsxwriter = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
-python_full_version = "3.11.3"
+python_full_version = "3.11.0"
