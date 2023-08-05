@@ -55,7 +55,9 @@ python main.py
 
   2. Via arquivo executável
 
-Na raiz do projeto, há um arquivo executável [LeitorCadernosTST.exe](LeitorCadernosTST.exe) para Windows. Basta executá-lo.
+Na raiz do projeto, há uma pasta 'LeituroCadernosTST' um arquivo executável [LeitorCadernosTST.exe](LeituroCadernosTST\LeituroCadernosTST.exe) para Windows. Basta executá-lo e os resultados deverão aparecer na pasta [LeitorCadernosTST\resultados](LeitorCadernosTST\resultados).
+
+Vale ressaltar que foi escolhido o modo de diretório no lugar de arquivo único por conta da saída dos arquivos, pois, no modo arquivo único, é alocado um diretório _MEI temporário na pasta AppData, não sendo muito para o usuário.
 
 
 ## _Features_
@@ -124,3 +126,4 @@ Já o outro resultado é uma planilha-relatório a ser gerada caso haja alguma d
  - [x] Realizar tratativas de exceções;
  - [ ] Customizar tipos e exceções;
  - [ ] Implementar testes e controle de qualidade (SonarQube);
+ - [ ] Ajustar diretório-alvo para saída do executável.
