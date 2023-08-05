@@ -26,6 +26,7 @@ class Main:
         self.__extrair_dados_cadernos()
         self.__gerar_resultados()
         self.logger.info("Operação finalizada.")
+        input("Tecle ENTER para finalizar o programa.")
         sys.exit()
 
 

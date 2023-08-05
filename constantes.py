@@ -3,6 +3,7 @@ import os
 
 TRIBUNAL = 'TST'
 CAMINHO_PASTA_PROJETO = os.path.dirname(__file__)
+CAMINHO_PASTA_LOGS = os.path.join(CAMINHO_PASTA_PROJETO, 'app', 'logs')
 CAMINHO_PASTA_RESULTADOS = os.path.join(CAMINHO_PASTA_PROJETO, 'resultados')
 CAMINHO_PASTA_DOWNLOADS = os.path.join(CAMINHO_PASTA_RESULTADOS, 'arquivos')
 CAMINHO_JSON_RESULTADOS = os.path.join(CAMINHO_PASTA_RESULTADOS, 'resultado.json')

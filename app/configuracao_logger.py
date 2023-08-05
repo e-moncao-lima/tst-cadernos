@@ -1,6 +1,7 @@
 import os
 import logging
 from logging.handlers import TimedRotatingFileHandler
+from constantes import CAMINHO_PASTA_LOGS
 
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -17,8 +18,12 @@ def get_cmd_handler() -> logging.StreamHandler:
 
 
 def get_file_handler() -> TimedRotatingFileHandler:
-    file_handler = TimedRotatingFileHandler(os.path.join(ROOT_DIR, 'logs', 'tst-cadernos.log'), 
-                                            when='midnight', backupCount=30, encoding='utf-8')
+    try:
+        file_handler = TimedRotatingFileHandler(os.path.join(CAMINHO_PASTA_LOGS, 'tst-cadernos.log'), 
+                                                when='midnight', backupCount=30, encoding='utf-8')
+    except FileNotFoundError:
+        os.mkdir(CAMINHO_PASTA_LOGS)
+        get_file_handler()
     file_handler.suffix = "%d-%m-%Y"
     file_handler.setLevel(logging.INFO)
     file_format = logging.Formatter(LOG_FORMAT, DATE_FORMAT)
@@ -30,6 +35,6 @@ def get_custom_logger() -> logging.Logger:
     logger = logging.getLogger(__file__)
     logger.setLevel(logging.DEBUG)
     logger.addHandler(get_cmd_handler())
-    logger.addHandler(get_file_handler())
+    # logger.addHandler(get_file_handler())
     logger.propagate = False
     return logger
