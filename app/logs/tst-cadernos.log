@@ -1,0 +1,17 @@
+[Fri, 04 Aug 2023 23:48:48] - INFO - Line 45 on function executar from busca_cadernos.py: Iniciando navegador para realizar a busca dos cadernos.
+[Fri, 04 Aug 2023 23:52:29] - INFO - Line 45 on function executar from busca_cadernos.py: Iniciando navegador para realizar a busca dos cadernos.
+[Fri, 04 Aug 2023 23:53:04] - INFO - Line 45 on function executar from busca_cadernos.py: Iniciando navegador para realizar a busca dos cadernos.
+[Fri, 04 Aug 2023 23:53:29] - INFO - Line 45 on function executar from busca_cadernos.py: Iniciando navegador para realizar a busca dos cadernos.
+[Fri, 04 Aug 2023 23:53:42] - INFO - Line 52 on function executar from busca_cadernos.py: Cadernos baixados com sucesso.
+[Fri, 04 Aug 2023 23:53:44] - INFO - Line 46 on function executar from leitura_cadernos.py: Iniciando procedimento de leitura dos cadernos.
+[sex, 04 ago 2023 23:53:44] - ERROR - Line 30 on function obter_dados_arquivo_json from sistema_arquivos.py: Arquivo não existe.
+[sex, 04 ago 2023 23:53:49] - INFO - Line 53 on function executar from leitura_cadernos.py: Processo de leitura dos cadernos concluída com sucesso.
+[Fri, 04 Aug 2023 23:54:53] - INFO - Line 45 on function executar from busca_cadernos.py: Iniciando navegador para realizar a busca dos cadernos.
+[Fri, 04 Aug 2023 23:55:42] - INFO - Line 45 on function executar from busca_cadernos.py: Iniciando navegador para realizar a busca dos cadernos.
+[Fri, 04 Aug 2023 23:55:54] - INFO - Line 52 on function executar from busca_cadernos.py: Cadernos baixados com sucesso.
+[Fri, 04 Aug 2023 23:55:56] - INFO - Line 46 on function executar from leitura_cadernos.py: Iniciando procedimento de leitura dos cadernos.
+[sex, 04 ago 2023 23:55:56] - WARNING - Line 30 on function obter_dados_arquivo_json from sistema_arquivos.py: Arquivo não existe.
+[sex, 04 ago 2023 23:56:01] - INFO - Line 53 on function executar from leitura_cadernos.py: Processo de leitura dos cadernos concluída com sucesso.
+[sex, 04 ago 2023 23:56:01] - INFO - Line 40 on function executar from gera_resultados.py: Iniciando fase de geração dos resultados.
+[sex, 04 ago 2023 23:56:08] - INFO - Line 47 on function executar from gera_resultados.py: Resultados gerados com sucesso.
+[sex, 04 ago 2023 23:56:08] - INFO - Line 28 on function executar from main.py: Operação finalizada.
