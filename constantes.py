@@ -6,6 +6,7 @@ CAMINHO_PASTA_PROJETO = os.path.dirname(__file__)
 CAMINHO_PASTA_RESULTADOS = os.path.join(CAMINHO_PASTA_PROJETO, 'resultados')
 CAMINHO_PASTA_DOWNLOADS = os.path.join(CAMINHO_PASTA_RESULTADOS, 'arquivos')
 CAMINHO_JSON_RESULTADOS = os.path.join(CAMINHO_PASTA_RESULTADOS, 'resultado.json')
+CAMINHO_RELATORIO_DUPLICATAS = os.path.join(CAMINHO_PASTA_RESULTADOS, 'relatorio_duplicatas.xlsx')
 
 URL_BUSCA_CADERNO_TRIBUNAL = 'https://dejt.jt.jus.br/dejt/f/n/diariocon'
 BASE_LOCALIZADOR_DATA = 'corpo:formulario:data'

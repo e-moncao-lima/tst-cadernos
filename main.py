@@ -1,16 +1,15 @@
-from src.utils.config import driver
+import sys
 from src.use_cases.busca_cadernos import BuscaCadernos
 from src.use_cases.leitura_cadernos import LeituraCadernos
 from src.use_cases.gera_resultados import GeraResultados
-from constantes import CAMINHO_PASTA_DOWNLOADS
 
 
 class Main:
     def __init__(self) -> None:
-        self.driver = driver.abrir_navegador(CAMINHO_PASTA_DOWNLOADS)
+        pass
 
     def __buscar_cadernos(self) -> None:
-        busca_cadernos = BuscaCadernos(self.driver)
+        busca_cadernos = BuscaCadernos()
         busca_cadernos.executar()
 
     def __extrair_dados_cadernos(self) -> None:
@@ -26,6 +25,7 @@ class Main:
         self.__extrair_dados_cadernos()
         self.__gerar_resultados()
         print("Operação finalizada.")
+        sys.exit()
 
 
 if __name__ == '__main__':

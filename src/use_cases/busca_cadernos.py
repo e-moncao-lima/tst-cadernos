@@ -1,12 +1,13 @@
 from time import sleep
+from src.utils.config import driver
 from src.utils import navegacao, sistema_arquivos
 from src.entidades.datas import DatasSemanaAnterior
 import constantes
 
 
 class BuscaCadernos:
-    def __init__(self, driver) -> None:
-        self.driver = driver
+    def __init__(self) -> None:
+        self.driver = driver.abrir_navegador(constantes.CAMINHO_PASTA_DOWNLOADS)
         # self.logger
         self.datas_semana_anterior: dict[str, str] = DatasSemanaAnterior().obter_datas()
 
